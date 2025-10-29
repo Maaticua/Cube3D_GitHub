@@ -6,7 +6,7 @@
 /*   By: macaruan <macaruan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/12 13:08:04 by awaegaer          #+#    #+#             */
-/*   Updated: 2025/09/01 14:55:55 by macaruan         ###   ########.fr       */
+/*   Updated: 2025/10/28 14:36:36 by macaruan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,8 @@ int					ft_tolower(int c);
 // Converts a character to lowercase
 int					ft_strncmp(const char *s1, const char *s2, size_t n);
 // Compares two strings up to n characters
+int					ft_strcmp(const char *s1, const char *s2);
+// compares two strings
 int					ft_memcmp(const void *s1, const void *s2, size_t n);
 // Compares two memory areas
 int					ft_atoi(const char *nptr);

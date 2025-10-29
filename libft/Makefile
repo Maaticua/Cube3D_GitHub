@@ -40,6 +40,7 @@ LIBFT_DIR =	$(SRC_DIR)libft/ft_atoi.c \
 			$(SRC_DIR)libft/ft_strlcpy.c \
 			$(SRC_DIR)libft/ft_strlen.c \
 			$(SRC_DIR)libft/ft_strmapi.c \
+			$(SRC_DIR)libft/ft_strcmp.c \
 			$(SRC_DIR)libft/ft_strncmp.c \
 			$(SRC_DIR)libft/ft_strnstr.c \
 			$(SRC_DIR)libft/ft_strrchr.c \

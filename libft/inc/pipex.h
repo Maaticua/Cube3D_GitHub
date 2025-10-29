@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pipex.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: awaegaer <awaegaer@student.42.fr>          +#+  +:+       +#+        */
+/*   By: macaruan <macaruan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/17 14:06:41 by awaegaer          #+#    #+#             */
-/*   Updated: 2025/06/16 15:44:05 by awaegaer         ###   ########.fr       */
+/*   Updated: 2025/10/28 14:10:21 by macaruan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ typedef struct s_pipex
 }t_pipex;
 
 // main.c
-int		main(int argc, char **argv, char **envp);
+//int		main(int argc, char **argv, char **envp);
 
 // main_utils.c
 int		init_cmds(t_pipex *px, char **argv);

@@ -1,85 +1,70 @@
-NAME		= cub3D
-CC			= gcc
-CFLAGS		= -Wall -Wextra -Werror -g3
-
 # **************************************************************************** #
-#                                 DIRECTORIES                                  #
+#                                   CUB3D                                      #
 # **************************************************************************** #
 
-SRC_DIR		= srcs
-OBJ_DIR		= obj
-INC_DIR		= include
-LIBFT_DIR	= libft
-MLX_DIR		= minilibx-linux
+# Standard
+NAME				= cub3D
 
-# **************************************************************************** #
-#                                 SOURCE FILES                                 #
-# **************************************************************************** #
+# Directories
+LIBFT				= ./libft/libft.a
+MLX					= ./minilibx-linux/libmlx.a
+INC					= includes/
+SRC_DIR				= srcs/
+OBJ_DIR				= obj/
 
-SRC_FILES	= main.c \
+# Compiler and CFlags
+CC					= cc
+CFLAGS				= -Wall -Werror -Wextra -g -I
+MLX_FLAGS			= -L./minilibx-linux -lmlx -lXext -lX11 -lm -lz
+RM					= rm -f
 
-SRC			= $(addprefix $(SRC_DIR)/, $(SRC_FILES))
-OBJ			= $(patsubst $(SRC_DIR)/%.c,$(OBJ_DIR)/%.o,$(SRC))
+# Concatenate all source files
+SRCS				=	$(SRC_DIR)main.c							\
+						$(SRC_DIR)parsing/parse_elements.c			\
+						$(SRC_DIR)parsing/parse_file.c				\
+						$(SRC_DIR)parsing/parse_identifiers.c		\
+						$(SRC_DIR)parsing/parse_utils.c				\
+						$(SRC_DIR)parsing/validate_file.c			\
+						$(SRC_DIR)parsing/validate_texture.c		\
+						$(SRC_DIR)utils/error.c						\
 
-# **************************************************************************** #
-#                                  LIBRARIES                                   #
-# **************************************************************************** #
+# Apply the pattern substitution to each source file in SRC and produce a corresponding list of object files in the OBJ_DIR
+OBJ					= $(patsubst %.c,$(OBJ_DIR)/%.o, $(SRCS))
 
-LIBFT		= $(LIBFT_DIR)/libft.a
-MLX			= $(MLX_DIR)/libmlx.a
-MLX_FLAGS	= -L$(MLX_DIR) -lmlx -L/usr/lib -lXext -lX11 -lm -lz
-
-# **************************************************************************** #
-#                                   INCLUDES                                   #
-# **************************************************************************** #
-
-INCLUDES	= -I$(INC_DIR) -I$(LIBFT_DIR) -I$(MLX_DIR)
-
-# **************************************************************************** #
-#                                    COLORS                                    #
-# **************************************************************************** #
-
-GREEN		= \033[0;32m
-RED			= \033[0;31m
-RESET		= \033[0m
-
-# **************************************************************************** #
-#                                    RULES                                     #
-# **************************************************************************** #
-
-all: $(NAME)
-
-$(OBJ_DIR):
-	@mkdir -p $(OBJ_DIR)
-
-$(OBJ_DIR)/%.o: $(SRC_DIR)/%.c | $(OBJ_DIR)
-	@echo "$(GREEN)Compiling $<$(RESET)"
-	@$(CC) $(CFLAGS) $(INCLUDES) -c $< -o $@
+# Build rules
+start:
+					@make all
 
 $(LIBFT):
-	@echo "$(GREEN)Compiling libft...$(RESET)"
-	@$(MAKE) -C $(LIBFT_DIR) --no-print-directory
+					@make -C ./libft
 
 $(MLX):
-	@echo "$(GREEN)Compiling miniLibX...$(RESET)"
-	@$(MAKE) -C $(MLX_DIR) --no-print-directory
+					@make -C ./minilibx-linux
 
-$(NAME): $(LIBFT) $(MLX) $(OBJ)
-	@echo "$(GREEN)Linking $(NAME)...$(RESET)"
-	@$(CC) $(CFLAGS) $(OBJ) $(LIBFT) $(MLX_FLAGS) -o $(NAME)
-	@echo "$(GREEN)✓ $(NAME) created successfully!$(RESET)"
+all:				$(NAME)
+
+$(NAME):			$(OBJ) $(LIBFT) $(MLX)
+					@$(CC) $(CFLAGS) $(INC) $(OBJ) $(LIBFT) $(MLX_FLAGS) -o $(NAME)
+					@echo "✅ $(NAME) compiled successfully!"
+
+# Compile object files from source files
+$(OBJ_DIR)/%.o:		%.c
+					@mkdir -p $(@D)
+					@$(CC) $(CFLAGS) $(INC) -c $< -o $@
+					@echo "Compiling $<"
 
 clean:
-	@echo "$(RED)Cleaning object files...$(RESET)"
-	@rm -rf $(OBJ_DIR)
-	@$(MAKE) -C $(LIBFT_DIR) clean --no-print-directory
-	@$(MAKE) -C $(MLX_DIR) clean --no-print-directory
+					@$(RM) -r $(OBJ_DIR)
+					@make clean -C ./libft
+					@make clean -C ./minilibx-linux
+					@echo "🧹 Object files cleaned!"
 
-fclean: clean
-	@echo "$(RED)Cleaning executables...$(RESET)"
-	@rm -f $(NAME)
-	@$(MAKE) -C $(LIBFT_DIR) fclean --no-print-directory
+fclean:				clean
+					@$(RM) $(NAME)
+					@$(RM) $(LIBFT)
+					@echo "🗑️  Executable removed!"
 
-re: fclean all
+re:					fclean all
 
-.PHONY: all clean fclean re
+# Phony targets represent actions not files
+.PHONY:				start all clean fclean re
