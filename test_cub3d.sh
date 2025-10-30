@@ -331,6 +331,78 @@ C 225,30,0
 111111
 EOF
 
+# ========== EDGE CASES ==========
+
+cat > maps/tests/empty_line_in_map.cub << 'EOF'
+NO ./textures/north.xpm
+SO ./textures/south.xpm
+WE ./textures/west.xpm
+EA ./textures/east.xpm
+F 220,100,0
+C 225,30,0
+
+111111
+100001
+
+10N001
+111111
+EOF
+
+cat > maps/tests/only_spaces.cub << 'EOF'
+NO ./textures/north.xpm
+SO ./textures/south.xpm
+WE ./textures/west.xpm
+EA ./textures/east.xpm
+F 220,100,0
+C 225,30,0
+
+
+EOF
+
+cat > maps/tests/color_with_spaces.cub << 'EOF'
+NO ./textures/north.xpm
+SO ./textures/south.xpm
+WE ./textures/west.xpm
+EA ./textures/east.xpm
+F 220, 100, 0
+C 225,30,0
+
+111111
+100001
+10N001
+111111
+EOF
+
+cat > maps/tests/duplicate_color.cub << 'EOF'
+NO ./textures/north.xpm
+SO ./textures/south.xpm
+WE ./textures/west.xpm
+EA ./textures/east.xpm
+F 220,100,0
+F 220,100,0
+C 225,30,0
+
+111111
+100001
+10N001
+111111
+EOF
+
+cat > maps/tests/diagonal_hole.cub << 'EOF'
+NO ./textures/north.xpm
+SO ./textures/south.xpm
+WE ./textures/west.xpm
+EA ./textures/east.xpm
+F 220,100,0
+C 225,30,0
+
+11111
+1   1
+1 N 1
+1   1
+11111
+EOF
+
 test_map() {
     local test_name="$1"
     local map_file="$2"
@@ -426,6 +498,14 @@ test_map "Color overflow (>255)" "maps/tests/color_overflow.cub" "false"
 test_map "Negative color" "maps/tests/color_negative.cub" "false"
 test_map "Invalid character in map" "maps/tests/invalid_char.cub" "false"
 test_map "Empty map" "maps/tests/empty_map.cub" "false"
+
+echo ""
+echo -e "${YELLOW}--- EDGE CASES (Should FAIL) ---${NC}"
+test_map "Empty line in map" "maps/tests/empty_line_in_map.cub" "false"
+test_map "Only spaces" "maps/tests/only_spaces.cub" "false"
+test_map "Color with spaces" "maps/tests/color_with_spaces.cub" "false"
+test_map "Duplicate color" "maps/tests/duplicate_color.cub" "false"
+test_map "Diagonal hole" "maps/tests/diagonal_hole.cub" "false"
 
 echo ""
 echo -e "${YELLOW}--- FILE ERRORS (Should FAIL) ---${NC}"
