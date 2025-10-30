@@ -6,7 +6,7 @@
 /*   By: macaruan <macaruan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/28 13:23:56 by macaruan          #+#    #+#             */
-/*   Updated: 2025/10/28 16:47:03 by macaruan         ###   ########.fr       */
+/*   Updated: 2025/10/30 14:31:40 by macaruan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,14 +31,14 @@ int	is_map_line(char *line)
 	{
 		if (!is_map_char(line[i]))
 			return (0);
-		if (line[i] != ' ' && line[i] != '\t')
+		if (line[i] != ' ')
 			has_valid_char = 1;
 		i++;
 	}
 	return (has_valid_char);
 }
 
-static int	read_config_lines(int fd, t_game *game)
+static char	*read_config_lines(int fd, t_game *game)
 {
 	char	*line;
 
@@ -48,16 +48,13 @@ static int	read_config_lines(int fd, t_game *game)
 		if (!is_empty_line(line))
 		{
 			if (is_map_line(line))
-			{
-				free(line);
-				break ;
-			}
+				return (line);
 			parse_element(line, game);
 		}
 		free(line);
 		line = get_next_line(fd);
 	}
-	return (1);
+	return (NULL);
 }
 
 static int	validate_all(t_game *game)
@@ -71,16 +68,23 @@ static int	validate_all(t_game *game)
 
 int	parse_file(char *filename, t_game *game)
 {
-	int	fd;
+	int		fd;
+	char	*first_map_line;
 
 	if (!validate_extension(filename))
 		return (print_error("Error\nInvalid file extension"), 0);
 	fd = open(filename, O_RDONLY);
 	if (fd < 0)
 		return (print_error("Error\nCannot open file"), 0);
-	read_config_lines(fd, game);
+	first_map_line = read_config_lines(fd, game);
 	if (!validate_all(game))
-		return (close(fd), 0);
+		return (close(fd), free(first_map_line), 0);
+	if (!first_map_line)
+		return (close(fd), print_error("Error\nNo map found"), 0);
+	if (!read_map(fd, first_map_line, game, filename))
+		return (close(fd), print_error("Error\nMap parsing failed"), 0);
+	if (!validate_map(game))
+		return (0);
 	close(fd);
 	return (1);
 }

@@ -6,7 +6,7 @@
 /*   By: macaruan <macaruan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/28 15:07:25 by macaruan          #+#    #+#             */
-/*   Updated: 2025/10/28 15:07:29 by macaruan         ###   ########.fr       */
+/*   Updated: 2025/10/29 16:56:00 by macaruan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,3 +50,40 @@ int	main(int argc, char **argv)
 	free_game(&game);
 	return (0);
 }
+
+// int main(int argc, char **argv)
+// {
+//     t_game  game;
+//     int     i;
+
+//     if (argc != 2)
+//     {
+//         print_error("Error\nUsage: ./cub3D <map.cub>");
+//         return (1);
+//     }
+//     init_game(&game);
+//     if (!parse_file(argv[1], &game))
+//     {
+//         free_game(&game);
+//         return (1);
+//     }
+//     printf("✅ Parsing successful!\n");
+//     printf("NO: %s\n", game.textures.north);
+//     printf("SO: %s\n", game.textures.south);
+//     printf("WE: %s\n", game.textures.west);
+//     printf("EA: %s\n", game.textures.east);
+//     printf("Floor: RGB(%d,%d,%d)\n", game.floor.r, game.floor.g, game.floor.b);
+//     printf("Ceiling: RGB(%d,%d,%d)\n\n", game.ceilling.r, game.ceilling.g, game.ceilling.b);
+
+//     // Afficher la map
+//     printf("Map (%dx%d):\n", game.map.width, game.map.height);
+//     i = 0;
+//     while (i < game.map.height && game.map.grid[i])
+//     {
+//         printf("[%s]\n", game.map.grid[i]);
+//         i++;
+//     }
+
+//     free_game(&game);
+//     return (0);
+// }

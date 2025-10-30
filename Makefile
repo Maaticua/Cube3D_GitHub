@@ -23,8 +23,10 @@ SRCS				=	$(SRC_DIR)main.c							\
 						$(SRC_DIR)parsing/parse_elements.c			\
 						$(SRC_DIR)parsing/parse_file.c				\
 						$(SRC_DIR)parsing/parse_identifiers.c		\
+						$(SRC_DIR)parsing/parse_map.c				\
 						$(SRC_DIR)parsing/parse_utils.c				\
 						$(SRC_DIR)parsing/validate_file.c			\
+						$(SRC_DIR)parsing/validate_map.c			\
 						$(SRC_DIR)parsing/validate_texture.c		\
 						$(SRC_DIR)utils/error.c						\
 

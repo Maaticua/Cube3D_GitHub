@@ -6,7 +6,7 @@
 /*   By: macaruan <macaruan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/28 15:08:33 by macaruan          #+#    #+#             */
-/*   Updated: 2025/10/28 16:35:41 by macaruan         ###   ########.fr       */
+/*   Updated: 2025/10/30 14:21:57 by macaruan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,6 +74,10 @@ int				parse_file(char *filename, t_game *game);
 //---parse_identifiers.c---//
 void			parse_element(char *line, t_game *game);
 
+//---parse_map.c---///
+int				read_map(int fd, char *first_line, t_game *game,
+					char *filename);
+
 //---parse_utils.c---//
 int				is_empty_line(char *line);
 char			*skip_identifiers(char *line);
@@ -81,6 +85,9 @@ char			*skip_identifiers(char *line);
 //---validate_file.c---//
 int				validate_extension(char *filename);
 int				check_all_elements_parsed(t_game *game);
+
+//---validate_map.c---//
+int				validate_map(t_game *game);
 
 //---validate_texture---//
 int				validate_textures(t_game *game);
