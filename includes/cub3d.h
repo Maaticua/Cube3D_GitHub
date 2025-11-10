@@ -6,7 +6,7 @@
 /*   By: awaegaer <awaegaer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/28 15:08:33 by macaruan          #+#    #+#             */
-/*   Updated: 2025/11/05 16:15:28 by awaegaer         ###   ########.fr       */
+/*   Updated: 2025/11/10 16:12:50 by awaegaer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,26 @@
 # define CUB3D_H
 
 # include "../libft/inc/libft.h"
+# include "../minilibx-linux/mlx.h"
 # include <fcntl.h>
 # include <stdio.h>
 # include <stdlib.h>
 # include <string.h>
 # include <unistd.h>
 # include <X11/keysym.h>
+# include <X11/X.h>
+
+# define WINDOW_WIDTH 800
+# define WINDOW_HEIGHT 600
+
+typedef struct s_img
+{
+	void		*img_ptr;
+	char		*addr;
+	int			bits_per_pixel;
+	int			line_length;
+	int			endian;
+}				t_img;
 
 typedef struct s_textures
 {
@@ -59,7 +73,17 @@ typedef struct s_game
 	t_color		ceilling;
 	t_map		map;
 	t_player	player;
+	t_img		img;
 }				t_game;
+
+//----------------mlx----------------//
+
+//---mlx_utils.c---//
+int				handle_close(void *game_ptr);
+void			free_mlx(t_game *game);
+int				handle_key(int keycode, void *game_ptr);
+void			mlx_inits(t_game *game);
+
 
 //----------------parsing----------------//
 

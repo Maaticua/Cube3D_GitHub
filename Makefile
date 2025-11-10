@@ -20,6 +20,7 @@ RM					= rm -f
 
 # Concatenate all source files
 SRCS				=	$(SRC_DIR)main.c							\
+						$(SRC_DIR)mlx/mlx_utils.c					\
 						$(SRC_DIR)parsing/parse_elements.c			\
 						$(SRC_DIR)parsing/parse_file.c				\
 						$(SRC_DIR)parsing/parse_identifiers.c		\
