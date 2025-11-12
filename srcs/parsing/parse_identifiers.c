@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_identifiers.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: macaruan <macaruan@student.42.fr>          +#+  +:+       +#+        */
+/*   By: awaegaer <awaegaer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/24 16:40:43 by macaruan          #+#    #+#             */
-/*   Updated: 2025/10/30 15:55:53 by macaruan         ###   ########.fr       */
+/*   Updated: 2025/11/12 15:14:06 by awaegaer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ static void	parse_west_east(char *line, t_game *game)
 	}
 }
 
-static void	parse_floor_ceilling(char *line, t_game *game)
+static void	parse_floor_ceiling(char *line, t_game *game)
 {
 	char	*colors;
 
@@ -70,11 +70,11 @@ static void	parse_floor_ceilling(char *line, t_game *game)
 	}
 	if (ft_strncmp(line, "C", 1) == 0 && (line[1] == ' ' || line[1] == '\t'))
 	{
-		if (game->ceilling.r != -1)
-			exit_error("Error\nDuplicate ceilling color", game);
+		if (game->ceiling.r != -1)
+			exit_error("Error\nDuplicate ceiling color", game);
 		colors = skip_identifiers(line);
-		if (!parse_color(colors, &game->ceilling))
-			exit_error("Error\nInvalid ceilling color", game);
+		if (!parse_color(colors, &game->ceiling))
+			exit_error("Error\nInvalid ceiling color", game);
 	}
 }
 
@@ -82,5 +82,5 @@ void	parse_element(char *line, t_game *game)
 {
 	parse_north_south(line, game);
 	parse_west_east(line, game);
-	parse_floor_ceilling(line, game);
+	parse_floor_ceiling(line, game);
 }

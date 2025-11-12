@@ -6,7 +6,7 @@
 /*   By: awaegaer <awaegaer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/28 15:08:33 by macaruan          #+#    #+#             */
-/*   Updated: 2025/11/10 16:12:50 by awaegaer         ###   ########.fr       */
+/*   Updated: 2025/11/12 17:00:04 by awaegaer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,10 +70,10 @@ typedef struct s_game
 	void		*win;
 	t_textures	textures;
 	t_color		floor;
-	t_color		ceilling;
+	t_color		ceiling;
 	t_map		map;
 	t_player	player;
-	t_img		img;
+	t_img		*img;
 }				t_game;
 
 //----------------mlx----------------//
@@ -84,6 +84,11 @@ void			free_mlx(t_game *game);
 int				handle_key(int keycode, void *game_ptr);
 void			mlx_inits(t_game *game);
 
+//---render.c---//
+void		put_pixel(t_img *img, int x, int y, int color);
+int			create_color(int r, int g, int b);
+void		render_floor_n_ceiling(t_game *game);
+int			render_frame(void *game_ptr);
 
 //----------------parsing----------------//
 

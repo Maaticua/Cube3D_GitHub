@@ -6,7 +6,7 @@
 /*   By: awaegaer <awaegaer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/28 15:07:25 by macaruan          #+#    #+#             */
-/*   Updated: 2025/11/10 14:57:37 by awaegaer         ###   ########.fr       */
+/*   Updated: 2025/11/12 17:00:13 by awaegaer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,9 +18,12 @@ static void	init_game(t_game *game)
 	game->floor.r = -1;
 	game->floor.g = -1;
 	game->floor.b = -1;
-	game->ceilling.r = -1;
-	game->ceilling.g = -1;
-	game->ceilling.b = -1;
+	game->ceiling.r = -1;
+	game->ceiling.g = -1;
+	game->ceiling.b = -1;
+	game->img = malloc(sizeof(t_img));
+	if (!game->img)
+		exit (EXIT_FAILURE);
 }
 
 int	main(int argc, char **argv)
@@ -39,6 +42,8 @@ int	main(int argc, char **argv)
 		return (1);
 	}
 	mlx_inits(&game);
+	// render_frame(&game);
+	mlx_loop_hook(game.mlx, render_frame, &game);
 	mlx_hook(game.win, 2, KeyPressMask, handle_key, &game);
 	mlx_hook(game.win, 17, 0, handle_close, &game);
 	mlx_loop(game.mlx);

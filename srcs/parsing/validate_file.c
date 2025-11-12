@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   validate_file.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: macaruan <macaruan@student.42.fr>          +#+  +:+       +#+        */
+/*   By: awaegaer <awaegaer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/24 15:22:54 by macaruan          #+#    #+#             */
-/*   Updated: 2025/10/28 16:47:16 by macaruan         ###   ########.fr       */
+/*   Updated: 2025/11/12 15:14:17 by awaegaer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ int	check_all_elements_parsed(t_game *game)
 		return (print_error("Error\nMissing WE texture"), 0);
 	if (game->floor.r == -1)
 		return (print_error("Error\nMissing F color"), 0);
-	if (game->ceilling.r == -1)
+	if (game->ceiling.r == -1)
 		return (print_error("Error\nMissing C color"), 0);
 	return (1);
 }

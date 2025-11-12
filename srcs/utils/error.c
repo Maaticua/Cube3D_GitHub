@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   error.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: macaruan <macaruan@student.42.fr>          +#+  +:+       +#+        */
+/*   By: awaegaer <awaegaer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/24 16:45:55 by macaruan          #+#    #+#             */
-/*   Updated: 2025/10/30 15:37:39 by macaruan         ###   ########.fr       */
+/*   Updated: 2025/11/12 15:40:33 by awaegaer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,4 +46,6 @@ void	free_game(t_game *game)
 		}
 		free(game->map.grid);
 	}
+	if (game->img)
+		free(game->img);
 }
