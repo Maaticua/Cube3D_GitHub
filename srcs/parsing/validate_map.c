@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   validate_map.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: macaruan <macaruan@student.42.fr>          +#+  +:+       +#+        */
+/*   By: awaegaer <awaegaer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/30 14:04:08 by macaruan          #+#    #+#             */
-/*   Updated: 2025/10/30 14:34:38 by macaruan         ###   ########.fr       */
+/*   Updated: 2025/11/17 16:36:28 by awaegaer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@ static int	find_player(t_game *game)
 				game->player.pos_x = x + 0.5;
 				game->player.pos_y = y + 0.5;
 				game->player.orientation = game->map.grid[y][x];
+				game->map.grid[y][x] = '0';
 				count++;
 			}
 		}
