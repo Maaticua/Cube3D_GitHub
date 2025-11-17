@@ -22,6 +22,8 @@ RM					= rm -f
 SRCS				=	$(SRC_DIR)main.c							\
 						$(SRC_DIR)mlx/mlx_utils.c					\
 						$(SRC_DIR)mlx/render.c						\
+						$(SRC_DIR)mlx/game_utils.c					\
+						$(SRC_DIR)mlx/ray_casting.c					\
 						$(SRC_DIR)parsing/parse_elements.c			\
 						$(SRC_DIR)parsing/parse_file.c				\
 						$(SRC_DIR)parsing/parse_identifiers.c		\

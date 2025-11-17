@@ -6,7 +6,7 @@
 /*   By: awaegaer <awaegaer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/10 15:54:48 by awaegaer          #+#    #+#             */
-/*   Updated: 2025/11/12 16:53:06 by awaegaer         ###   ########.fr       */
+/*   Updated: 2025/11/14 17:12:40 by awaegaer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,7 @@ int	render_frame(void *game_ptr)
 
 	game = (t_game *) game_ptr;
 	render_floor_n_ceiling(game);
+	ray_casting(game);
 	mlx_put_image_to_window(game->mlx, game->win, game->img->img_ptr, 0, 0);
 	return (0);
 }

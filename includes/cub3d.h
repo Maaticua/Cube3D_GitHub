@@ -6,7 +6,7 @@
 /*   By: awaegaer <awaegaer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/28 15:08:33 by macaruan          #+#    #+#             */
-/*   Updated: 2025/11/12 17:00:04 by awaegaer         ###   ########.fr       */
+/*   Updated: 2025/11/17 15:48:53 by awaegaer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,9 +22,31 @@
 # include <unistd.h>
 # include <X11/keysym.h>
 # include <X11/X.h>
+# include <math.h>
 
 # define WINDOW_WIDTH 800
 # define WINDOW_HEIGHT 600
+
+typedef struct s_rc_ctx
+{
+	double		x;
+	double		camera_x;
+	double		ray_dir_x;
+	double		ray_dir_y;
+	double		delta_dist_x;
+	double		delta_dist_y;
+	double		side_dist_x;
+	double		side_dist_y;
+	double		perp_wall_dist;
+	double		draw_start;
+	double		draw_end;
+	int			map_x;
+	int			map_y;
+	int			step_x;
+	int			step_y;
+	int			line_height;
+	int			side;
+}				t_rc_ctx;
 
 typedef struct s_img
 {
@@ -55,6 +77,10 @@ typedef struct s_player
 	double		pos_x;
 	double		pos_y;
 	char		orientation;
+	double		dir_x;
+	double		dir_y;
+	double		cam_x;
+	double		cam_y;
 }				t_player;
 
 typedef struct s_map
@@ -89,6 +115,15 @@ void		put_pixel(t_img *img, int x, int y, int color);
 int			create_color(int r, int g, int b);
 void		render_floor_n_ceiling(t_game *game);
 int			render_frame(void *game_ptr);
+
+//---ray_casting.c---//
+int			digital_differential_analysis_ops(t_player *player, t_rc_ctx *rc_ctx);
+void		ray_casting(t_game *game);
+void		draw_wall(t_game *game, t_rc_ctx *rc_ctx, int wall_color);
+void		project_ray_until_wall(t_game *game, t_rc_ctx *rc_ctx);
+
+//---game_utils.c---//
+int	init_player_vectors(t_game *game);
 
 //----------------parsing----------------//
 
