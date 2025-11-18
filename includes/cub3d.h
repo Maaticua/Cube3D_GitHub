@@ -6,7 +6,7 @@
 /*   By: awaegaer <awaegaer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/28 15:08:33 by macaruan          #+#    #+#             */
-/*   Updated: 2025/11/17 15:48:53 by awaegaer         ###   ########.fr       */
+/*   Updated: 2025/11/18 18:00:51 by awaegaer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,8 @@ typedef struct s_img
 	int			bits_per_pixel;
 	int			line_length;
 	int			endian;
+	int			width;
+	int			height;
 }				t_img;
 
 typedef struct s_textures
@@ -63,6 +65,10 @@ typedef struct s_textures
 	char		*south;
 	char		*west;
 	char		*east;
+	t_img		*north_img;
+	t_img		*south_img;
+	t_img		*west_img;
+	t_img		*east_img;
 }				t_textures;
 
 typedef struct s_color
@@ -109,6 +115,8 @@ int				handle_close(void *game_ptr);
 void			free_mlx(t_game *game);
 int				handle_key(int keycode, void *game_ptr);
 void			mlx_inits(t_game *game);
+void			img_init(t_img *img, t_game *game, char *filename);
+
 
 //---render.c---//
 void		put_pixel(t_img *img, int x, int y, int color);
@@ -123,7 +131,11 @@ void		draw_wall(t_game *game, t_rc_ctx *rc_ctx, int wall_color);
 void		project_ray_until_wall(t_game *game, t_rc_ctx *rc_ctx);
 
 //---game_utils.c---//
-int	init_player_vectors(t_game *game);
+int			init_player_vectors(t_game *game);
+void		free_textures_imgs(t_game *game);
+void		init_textures_imgs(t_game *game);
+
+
 
 //----------------parsing----------------//
 

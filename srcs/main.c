@@ -6,7 +6,7 @@
 /*   By: awaegaer <awaegaer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/28 15:07:25 by macaruan          #+#    #+#             */
-/*   Updated: 2025/11/17 16:50:47 by awaegaer         ###   ########.fr       */
+/*   Updated: 2025/11/18 18:01:53 by awaegaer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,9 +51,10 @@ int	main(int argc, char **argv)
 	// 	y = 0;
 	// 	printf("\n");
 	// }
-	printf("debug: px: %f, py: %f, o: %c\n", game.player.pos_x, game.player.pos_y, game.player.orientation);
+	// printf("debug: px: %f, py: %f, o: %c\n", game.player.pos_x, game.player.pos_y, game.player.orientation);
 	mlx_inits(&game);
 	init_player_vectors(&game);
+	init_textures_imgs(&game);
 	mlx_loop_hook(game.mlx, render_frame, &game);
 	mlx_hook(game.win, 2, KeyPressMask, handle_key, &game);
 	mlx_hook(game.win, 17, 0, handle_close, &game);

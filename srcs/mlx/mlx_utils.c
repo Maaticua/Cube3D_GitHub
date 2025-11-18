@@ -6,7 +6,7 @@
 /*   By: awaegaer <awaegaer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/10 14:49:02 by awaegaer          #+#    #+#             */
-/*   Updated: 2025/11/12 16:45:00 by awaegaer         ###   ########.fr       */
+/*   Updated: 2025/11/18 18:01:13 by awaegaer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ int	handle_close(void *game_ptr)
 
 void	free_mlx(t_game *game)
 {
+	free_textures_imgs(game);
 	if (game->img->img_ptr)
 	{
 		mlx_destroy_image(game->mlx, game->img->img_ptr);
@@ -54,17 +55,19 @@ int	handle_key(int keycode, void *game_ptr)
 	return (0);
 }
 
-void	img_init(t_img *img, t_game *game)
+void	img_init(t_img *img, t_game *game, char *filename)
 {
-	img->img_ptr = mlx_new_image(game->mlx, WINDOW_WIDTH, WINDOW_HEIGHT);
+	int	width;
+	int	height;
+
+	img->img_ptr = mlx_xpm_file_to_image(game->mlx, filename, &width, &height);
 	if (!img->img_ptr)
 	{
 		free_mlx(game);
 		exit (EXIT_FAILURE);
 	}
-	img->bits_per_pixel = 32;
-	img->line_length = WINDOW_WIDTH * (img->bits_per_pixel / 8);
-	img->endian = 0;
+	img->width = width;
+	img->height = height;
 	img->addr = mlx_get_data_addr(img->img_ptr,
 			&img->bits_per_pixel, &img->line_length, &img->endian);
 }
@@ -93,5 +96,6 @@ void	mlx_inits(t_game *game)
 	game->img->line_length = WINDOW_WIDTH * (game->img->bits_per_pixel / 8);
 	game->img->endian = 0;
 	game->img->addr = mlx_get_data_addr(game->img->img_ptr,
-			&game->img->bits_per_pixel, &game->img->line_length, &game->img->endian);
+			&game->img->bits_per_pixel, &game->img->line_length,
+			&game->img->endian);
 }
