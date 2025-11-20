@@ -6,7 +6,7 @@
 /*   By: awaegaer <awaegaer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/14 14:45:29 by awaegaer          #+#    #+#             */
-/*   Updated: 2025/11/18 17:56:16 by awaegaer         ###   ########.fr       */
+/*   Updated: 2025/11/20 18:21:33 by awaegaer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,29 +32,35 @@ int	init_player_vectors(t_game *game)
 void	free_textures_imgs(t_game *game)
 {
 	if (game->textures.east_img->img_ptr)
-	{
 		mlx_destroy_image(game->mlx, game->textures.east_img->img_ptr);
-		game->textures.east_img->img_ptr = NULL;
-	}
 	if (game->textures.west_img->img_ptr)
-	{
 		mlx_destroy_image(game->mlx, game->textures.west_img->img_ptr);
-		game->textures.west_img->img_ptr = NULL;
-	}
 	if (game->textures.north_img->img_ptr)
-	{
 		mlx_destroy_image(game->mlx, game->textures.north_img->img_ptr);
-		game->textures.north_img->img_ptr = NULL;
-	}
 	if (game->textures.south_img->img_ptr)
-	{
 		mlx_destroy_image(game->mlx, game->textures.south_img->img_ptr);
-		game->textures.south_img->img_ptr = NULL;
-	}
+	if (game->textures.east_img)
+		free(game->textures.east_img);
+	game->textures.east_img = NULL;
+	if (game->textures.west_img)
+		free(game->textures.west_img);
+	game->textures.west_img = NULL;
+	if (game->textures.north_img)
+		free(game->textures.north_img);
+	game->textures.north_img = NULL;
+	if (game->textures.south_img)
+		free(game->textures.south_img);
+	game->textures.south_img = NULL;
 }
 
 void	init_textures_imgs(t_game *game)
 {
+	game->textures.east_img = malloc(sizeof(t_img));
+	game->textures.west_img = malloc(sizeof(t_img));
+	game->textures.south_img = malloc(sizeof(t_img));
+	game->textures.north_img = malloc(sizeof(t_img));
+	if (!game->textures.east_img || !game->textures.west_img || !game->textures.north_img || !game->textures.south_img)
+		free_mlx(game);
 	img_init(game->textures.east_img, game, game->textures.east);
 	img_init(game->textures.west_img, game, game->textures.west);
 	img_init(game->textures.north_img, game, game->textures.north);

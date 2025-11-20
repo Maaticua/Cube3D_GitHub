@@ -6,7 +6,7 @@
 /*   By: awaegaer <awaegaer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/28 15:08:33 by macaruan          #+#    #+#             */
-/*   Updated: 2025/11/18 18:00:51 by awaegaer         ###   ########.fr       */
+/*   Updated: 2025/11/20 15:20:30 by awaegaer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -127,7 +127,7 @@ int			render_frame(void *game_ptr);
 //---ray_casting.c---//
 int			digital_differential_analysis_ops(t_player *player, t_rc_ctx *rc_ctx);
 void		ray_casting(t_game *game);
-void		draw_wall(t_game *game, t_rc_ctx *rc_ctx, int wall_color);
+void		draw_wall_color(t_game *game, t_rc_ctx *rc_ctx, int wall_color);
 void		project_ray_until_wall(t_game *game, t_rc_ctx *rc_ctx);
 
 //---game_utils.c---//
