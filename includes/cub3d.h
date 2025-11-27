@@ -6,7 +6,7 @@
 /*   By: awaegaer <awaegaer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/28 15:08:33 by macaruan          #+#    #+#             */
-/*   Updated: 2025/11/20 15:20:30 by awaegaer         ###   ########.fr       */
+/*   Updated: 2025/11/27 14:49:08 by awaegaer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,8 +42,8 @@ typedef struct s_rc_ctx
 	double		draw_end;
 	int			map_x;
 	int			map_y;
-	int			step_x;
-	int			step_y;
+	double		step_x;
+	double		step_y;
 	int			line_height;
 	int			side;
 }				t_rc_ctx;

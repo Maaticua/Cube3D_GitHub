@@ -6,7 +6,7 @@
 /*   By: awaegaer <awaegaer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/14 15:54:09 by awaegaer          #+#    #+#             */
-/*   Updated: 2025/11/20 17:58:00 by awaegaer         ###   ########.fr       */
+/*   Updated: 2025/11/25 16:53:00 by awaegaer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -125,7 +125,7 @@ void	draw_wall_texture(t_game *game, t_rc_ctx *rc_ctx)
 		}
 	}
 	rc_ctx->line_height = (int)(WINDOW_HEIGHT / rc_ctx->perp_wall_dist);
-	rc_ctx->step_y = texture_img->height / rc_ctx->line_height;
+	rc_ctx->step_y = (double)texture_img->height / (double)rc_ctx->line_height;
 	rc_ctx->draw_start = -rc_ctx->line_height / 2 + WINDOW_HEIGHT / 2;
 	if (rc_ctx->draw_start < 0)
 		rc_ctx->draw_start = 0;
@@ -133,9 +133,16 @@ void	draw_wall_texture(t_game *game, t_rc_ctx *rc_ctx)
 	if (rc_ctx->draw_end >= WINDOW_HEIGHT)
 		rc_ctx->draw_end = WINDOW_HEIGHT - 1;
 	texture_position = (rc_ctx->draw_start - WINDOW_HEIGHT / 2 + rc_ctx->line_height / 2) * rc_ctx->step_y;
+	// rc_ctx->step_y = 1/4;
 	while (rc_ctx->draw_start < rc_ctx->draw_end)
 	{
+		//printf("Before: texture_position=%f, step_y=%d, rc_ctx.draw_start=%f, rc_ctx.draw_end=%f\n", texture_position, rc_ctx->step_y, rc_ctx->draw_start, rc_ctx->draw_end);
 		texture_Y = (int)texture_position % texture_img->height;
+		if (texture_Y >= texture_img->height)
+			texture_Y = texture_img->height - 1;
+		if (texture_Y < 0)
+			texture_Y = 0;
+		//printf("wallX: %f, texture_X: %d, texture_Y: %d, side: %d\n", wallX, texture_X, texture_Y, rc_ctx->side);
 		texture_offset = texture_Y * texture_img->line_length + texture_X * (texture_img->bits_per_pixel / 8);
 		color = *(unsigned int *)(texture_img->addr + texture_offset);
 		put_pixel(game->img, rc_ctx->x, rc_ctx->draw_start, color);
