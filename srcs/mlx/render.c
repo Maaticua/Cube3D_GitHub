@@ -6,7 +6,7 @@
 /*   By: awaegaer <awaegaer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/10 15:54:48 by awaegaer          #+#    #+#             */
-/*   Updated: 2025/11/14 17:12:40 by awaegaer         ###   ########.fr       */
+/*   Updated: 2025/12/15 14:30:34 by awaegaer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,21 +52,38 @@ void	render_floor_n_ceiling(t_game *game)
 	}
 }
 
+void	rotate_left_or_right(t_game *game, double angle)
+{
+	double	temp_dir_x;
+	double	temp_cam_x;
+
+	temp_dir_x = game->player.dir_x;
+	game->player.dir_x = game->player.dir_x * cos(angle) - game->player.dir_y * sin(angle);
+	game->player.dir_y = temp_dir_x * sin(angle) + game->player.dir_y * cos(angle);
+	temp_cam_x = game->player.cam_x;
+	game->player.cam_x = game->player.cam_x * cos(angle) - game->player.cam_y * sin(angle);
+	game->player.cam_y = temp_cam_x * sin(angle) + game->player.cam_y * cos(angle);
+}
+
+void	update_pos_n_dir(t_game *game)
+{
+	if (game->rotate_right)
+		rotate_left_or_right(game, 0.01);
+	else if (game->rotate_left)
+		rotate_left_or_right(game, -0.01);
+}
+
 int	render_frame(void *game_ptr)
 {
 	t_game	*game;
 
 	game = (t_game *) game_ptr;
+	if (game->map.height <= 0 || !game->map.grid)
+		return (0);
+	update_pos_n_dir(game);
 	render_floor_n_ceiling(game);
 	ray_casting(game);
 	mlx_put_image_to_window(game->mlx, game->win, game->img->img_ptr, 0, 0);
 	return (0);
 }
 
-// calculer l'offset avec la formule
-
-// Écrire la couleur à cette position en mémoire
-
-//     ​
-
-// Attention : Vérifie que x et y sont dans les limites de l'image !

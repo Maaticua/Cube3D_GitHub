@@ -6,7 +6,7 @@
 /*   By: awaegaer <awaegaer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/10 14:49:02 by awaegaer          #+#    #+#             */
-/*   Updated: 2025/11/20 17:58:56 by awaegaer         ###   ########.fr       */
+/*   Updated: 2025/12/11 16:30:00 by awaegaer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,8 +50,30 @@ int	handle_key(int keycode, void *game_ptr)
 	t_game	*game;
 
 	game = (t_game *) game_ptr;
+	if (keycode == XK_Left || keycode == XK_KP_Left)
+	{
+		game->rotate_right = 0;
+		game->rotate_left = 1;
+	}
+	else if (keycode == XK_Right || keycode == XK_KP_Right)
+	{
+		game->rotate_left = 0;
+		game->rotate_right = 1;
+	}
 	if (keycode == XK_Escape)
 		handle_close(game_ptr);
+	return (0);
+}
+
+int	handle_key_release(int keycode, void *game_ptr)
+{
+	t_game	*game;
+
+	game = (t_game *) game_ptr;
+	if (keycode == XK_Left || keycode == XK_KP_Left)
+		game->rotate_left = 0;
+	else if (keycode == XK_Right || keycode == XK_KP_Right)
+		game->rotate_right = 0;
 	return (0);
 }
 

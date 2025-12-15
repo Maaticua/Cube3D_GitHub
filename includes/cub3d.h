@@ -6,7 +6,7 @@
 /*   By: awaegaer <awaegaer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/28 15:08:33 by macaruan          #+#    #+#             */
-/*   Updated: 2025/11/27 14:49:08 by awaegaer         ###   ########.fr       */
+/*   Updated: 2025/12/10 17:28:03 by awaegaer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,6 +100,12 @@ typedef struct s_game
 {
 	void		*mlx;
 	void		*win;
+	int			rotate_left;
+	int			rotate_right;
+	int			moove_forward;
+	int			moove_backward;
+	int			moove_left;
+	int			moove_right;
 	t_textures	textures;
 	t_color		floor;
 	t_color		ceiling;
@@ -116,6 +122,8 @@ void			free_mlx(t_game *game);
 int				handle_key(int keycode, void *game_ptr);
 void			mlx_inits(t_game *game);
 void			img_init(t_img *img, t_game *game, char *filename);
+int				handle_key_release(int keycode, void *game_ptr);
+
 
 
 //---render.c---//
