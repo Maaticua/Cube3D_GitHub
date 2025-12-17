@@ -6,7 +6,7 @@
 /*   By: awaegaer <awaegaer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/10 15:54:48 by awaegaer          #+#    #+#             */
-/*   Updated: 2025/12/15 14:30:34 by awaegaer         ###   ########.fr       */
+/*   Updated: 2025/12/15 16:40:32 by awaegaer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,8 +65,39 @@ void	rotate_left_or_right(t_game *game, double angle)
 	game->player.cam_y = temp_cam_x * sin(angle) + game->player.cam_y * cos(angle);
 }
 
+void	moove_forward_backward_left_or_right(t_game * game, double ms)
+{
+	double	temp_pos_x;
+	double	temp_pos_y;
+
+	temp_pos_x = 0;
+	temp_pos_y = 0;
+	if (game->moove_forward)
+		temp_pos_x = game->player.pos_x + game->player.dir_x * ms;
+	else if (game->moove_backward)
+		temp_pos_x = game->player.pos_x - game->player.dir_x * ms;
+	else if (game->moove_right)
+		temp_pos_x = game->player.pos_x - game->player.dir_y * ms;
+	else if (game->moove_left)
+		temp_pos_x = game->player.pos_x + game->player.dir_y * ms;
+	if (game->moove_forward)
+		temp_pos_y = game->player.pos_y + game->player.dir_y * ms;
+	else if (game->moove_backward)
+		temp_pos_y = game->player.pos_y - game->player.dir_y * ms;
+	else if (game->moove_right)
+		temp_pos_y = game->player.pos_y + game->player.dir_x * ms;
+	else if (game->moove_left)
+		temp_pos_y = game->player.pos_y - game->player.dir_x * ms;
+	if (game->map.grid[(int)temp_pos_y][(int)game->player.pos_x] != '1')
+		game->player.pos_y = temp_pos_y;
+	if (game->map.grid[(int)game->player.pos_y][(int)temp_pos_x] != '1')
+		game->player.pos_x = temp_pos_x;
+}
+
 void	update_pos_n_dir(t_game *game)
 {
+	if (game->moove_backward || game->moove_forward || game->moove_left || game->moove_right)
+		moove_forward_backward_left_or_right(game, 0.01);
 	if (game->rotate_right)
 		rotate_left_or_right(game, 0.01);
 	else if (game->rotate_left)
@@ -78,8 +109,6 @@ int	render_frame(void *game_ptr)
 	t_game	*game;
 
 	game = (t_game *) game_ptr;
-	if (game->map.height <= 0 || !game->map.grid)
-		return (0);
 	update_pos_n_dir(game);
 	render_floor_n_ceiling(game);
 	ray_casting(game);
