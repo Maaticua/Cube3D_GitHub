@@ -6,7 +6,7 @@
 /*   By: awaegaer <awaegaer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/30 14:04:08 by macaruan          #+#    #+#             */
-/*   Updated: 2025/12/19 10:17:58 by awaegaer         ###   ########.fr       */
+/*   Updated: 2025/12/19 15:18:05 by awaegaer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,10 +77,8 @@ static int	check_walls(t_game *game)
 		while (game->map.grid[y][++x])
 		{
 			if (game->map.grid[y][x] == '0' || is_player(game->map.grid[y][x]))
-			{
 				if (!check_borders(game, y, x))
 					return (print_error("Error\nMap not closed"), 0);
-			}
 		}
 	}
 	return (1);

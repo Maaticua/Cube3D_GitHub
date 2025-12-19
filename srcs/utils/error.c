@@ -6,7 +6,7 @@
 /*   By: awaegaer <awaegaer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/24 16:45:55 by macaruan          #+#    #+#             */
-/*   Updated: 2025/12/17 15:21:43 by awaegaer         ###   ########.fr       */
+/*   Updated: 2025/12/19 14:30:26 by awaegaer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,4 +48,5 @@ void	free_game(t_game *game)
 	}
 	if (game->img)
 		free(game->img);
+	get_next_line(-1);
 }
