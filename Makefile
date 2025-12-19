@@ -21,7 +21,10 @@ RM					= rm -f
 # Concatenate all source files
 SRCS				=	$(SRC_DIR)main.c							\
 						$(SRC_DIR)mlx/mlx_utils.c					\
+						$(SRC_DIR)mlx/player_movements.c			\
 						$(SRC_DIR)mlx/render.c						\
+						$(SRC_DIR)mlx/wall_drawing.c				\
+						$(SRC_DIR)mlx/keys_handling.c				\
 						$(SRC_DIR)mlx/game_utils.c					\
 						$(SRC_DIR)mlx/ray_casting.c					\
 						$(SRC_DIR)parsing/parse_elements.c			\

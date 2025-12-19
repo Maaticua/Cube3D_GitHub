@@ -6,7 +6,7 @@
 /*   By: awaegaer <awaegaer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/30 14:04:08 by macaruan          #+#    #+#             */
-/*   Updated: 2025/11/17 16:36:28 by awaegaer         ###   ########.fr       */
+/*   Updated: 2025/12/19 10:17:58 by awaegaer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,10 +40,8 @@ static int	find_player(t_game *game)
 			}
 		}
 	}
-	if (count == 0)
-		return (print_error("Error\nNo player"), 0);
-	if (count > 1)
-		return (print_error("Error\nMultiple players"), 0);
+	if (count != 1)
+		return (print_error("Error\nMore or less than 1 Player"), 0);
 	return (1);
 }
 
