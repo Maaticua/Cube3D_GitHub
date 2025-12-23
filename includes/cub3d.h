@@ -6,7 +6,7 @@
 /*   By: awaegaer <awaegaer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/28 15:08:33 by macaruan          #+#    #+#             */
-/*   Updated: 2025/12/19 11:56:45 by awaegaer         ###   ########.fr       */
+/*   Updated: 2025/12/23 17:02:19 by awaegaer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -176,11 +176,11 @@ int			parse_color(char *line, t_color *color);
 
 //---parse-file---//
 int			is_map_char(char c);
-int			is_map_line(char *line);
+int			is_map_line(char *line, t_game *game, int fd);
 int			parse_file(char *filename, t_game *game);
 
 //---parse_identifiers.c---//
-void		parse_element(char *line, t_game *game);
+void		parse_element(char *line, t_game *game, int fd);
 
 //---parse_map.c---///
 int			read_map(int fd, char *first_line, t_game *game, char *filename);
@@ -188,6 +188,7 @@ int			read_map(int fd, char *first_line, t_game *game, char *filename);
 //---parse_utils.c---//
 int			is_empty_line(char *line);
 char		*skip_identifiers(char *line);
+int			free_temp(char **temp, int i);
 
 //---validate_file.c---//
 int			validate_extension(char *filename);
@@ -203,7 +204,7 @@ int			validate_textures(t_game *game);
 
 //---error.c---//
 void		print_error(char *msg);
-void		exit_error(char *msg, t_game *game);
+void		exit_error(char *msg, t_game *game, char *line, int fd);
 void		free_game(t_game *game);
 
 #endif

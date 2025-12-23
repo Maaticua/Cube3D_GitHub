@@ -6,7 +6,7 @@
 /*   By: awaegaer <awaegaer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/14 14:45:29 by awaegaer          #+#    #+#             */
-/*   Updated: 2025/12/19 10:44:02 by awaegaer         ###   ########.fr       */
+/*   Updated: 2025/12/23 16:27:29 by awaegaer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,10 @@ void	init_textures_imgs(t_game *game)
 	game->textures.west_img = malloc(sizeof(t_img));
 	game->textures.south_img = malloc(sizeof(t_img));
 	game->textures.north_img = malloc(sizeof(t_img));
+	ft_memset(game->textures.east_img, 0, sizeof(game->textures.east_img));
+	ft_memset(game->textures.west_img, 0, sizeof(game->textures.west_img));
+	ft_memset(game->textures.north_img, 0, sizeof(game->textures.north_img));
+	ft_memset(game->textures.south_img, 0, sizeof(game->textures.south_img));
 	if (!game->textures.east_img || !game->textures.west_img
 		|| !game->textures.north_img || !game->textures.south_img)
 		free_mlx(game);

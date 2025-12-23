@@ -6,7 +6,7 @@
 /*   By: awaegaer <awaegaer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/28 13:23:56 by macaruan          #+#    #+#             */
-/*   Updated: 2025/12/15 14:15:39 by awaegaer         ###   ########.fr       */
+/*   Updated: 2025/12/23 16:30:14 by awaegaer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,15 +18,19 @@ int	is_map_char(char c)
 		|| c == ' ');
 }
 
-int	is_map_line(char *line)
+int	is_map_line(char *line, t_game *game, int fd)
 {
 	int	i;
 	int	has_valid_char;
 
+	(void)game;
+	(void)fd;
 	i = 0;
 	has_valid_char = 0;
 	if (!line)
 		return (0);
+	if (line[0] == '\n')
+		return (1);
 	while (line[i] && line[i] != '\n')
 	{
 		if (!is_map_char(line[i]))
@@ -47,9 +51,9 @@ static char	*read_config_lines(int fd, t_game *game)
 	{
 		if (!is_empty_line(line))
 		{
-			if (is_map_line(line))
+			if (is_map_line(line, game, fd))
 				return (line);
-			parse_element(line, game);
+			parse_element(line, game, fd);
 		}
 		free(line);
 		line = get_next_line(fd);

@@ -6,7 +6,7 @@
 /*   By: awaegaer <awaegaer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/24 16:45:55 by macaruan          #+#    #+#             */
-/*   Updated: 2025/12/19 14:30:26 by awaegaer         ###   ########.fr       */
+/*   Updated: 2025/12/22 14:49:35 by awaegaer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,12 @@ void	print_error(char *msg)
 	ft_putendl_fd(msg, 2);
 }
 
-void	exit_error(char *msg, t_game *game)
+void	exit_error(char *msg, t_game *game, char *line, int fd)
 {
+	if (fd != -1)
+		close(fd);
+	if (line)
+		free(line);
 	print_error(msg);
 	free_game(game);
 	exit(1);

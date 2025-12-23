@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_utils.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: macaruan <macaruan@student.42.fr>          +#+  +:+       +#+        */
+/*   By: awaegaer <awaegaer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/28 15:58:41 by macaruan          #+#    #+#             */
-/*   Updated: 2025/10/28 16:47:27 by macaruan         ###   ########.fr       */
+/*   Updated: 2025/12/23 17:01:28 by awaegaer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,4 +38,15 @@ char	*skip_identifiers(char *line)
 	while (line[i] && (line[i] == ' ' || line[i] == '\t'))
 		i++;
 	return (&line[i]);
+}
+
+int	free_temp(char **temp, int i)
+{
+	int	j;
+
+	j = 0;
+	while (*temp && j < i)
+		free(temp[j++]);
+	free(temp);
+	return (1);
 }

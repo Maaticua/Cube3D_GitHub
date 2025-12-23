@@ -6,7 +6,7 @@
 /*   By: awaegaer <awaegaer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/10 14:49:02 by awaegaer          #+#    #+#             */
-/*   Updated: 2025/12/19 10:19:16 by awaegaer         ###   ########.fr       */
+/*   Updated: 2025/12/23 16:49:07 by awaegaer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@ int	handle_close(void *game_ptr)
 
 	game = (t_game *) game_ptr;
 	free_mlx(game);
+	free_game(game);
 	exit (EXIT_SUCCESS);
 	return (0);
 }
@@ -41,7 +42,6 @@ void	free_mlx(t_game *game)
 		free(game->mlx);
 		game->mlx = NULL;
 	}
-	free_game(game);
 }
 
 void	img_init(t_img *img, t_game *game, char *filename)
@@ -53,7 +53,7 @@ void	img_init(t_img *img, t_game *game, char *filename)
 	if (!img->img_ptr)
 	{
 		free_mlx(game);
-		exit (EXIT_FAILURE);
+		exit_error("Error\nxpm to image failed", game, NULL, -1);
 	}
 	img->width = width;
 	img->height = height;
