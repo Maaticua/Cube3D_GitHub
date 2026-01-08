@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: awaegaer <awaegaer@student.42.fr>          +#+  +:+       +#+        */
+/*   By: macaruan <macaruan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/28 15:08:33 by macaruan          #+#    #+#             */
-/*   Updated: 2025/12/23 17:02:19 by awaegaer         ###   ########.fr       */
+/*   Updated: 2026/01/08 15:48:16 by macaruan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,12 +115,16 @@ typedef struct s_game
 	int			moove_backward;
 	int			moove_left;
 	int			moove_right;
+	int			mouse_x;
+	int			mouse_last_x;
+	int			mouse_enabled;
 	t_textures	textures;
 	t_color		floor;
 	t_color		ceiling;
 	t_map		map;
 	t_player	player;
 	t_img		*img;
+
 }				t_game;
 
 //----------------mlx----------------//
@@ -206,5 +210,13 @@ int			validate_textures(t_game *game);
 void		print_error(char *msg);
 void		exit_error(char *msg, t_game *game, char *line, int fd);
 void		free_game(t_game *game);
+
+//----------------Bonus-----------------//
+
+//---mouse_bonus.c---///
+int			handle_mouse_move(int x, int y, void *game_ptr);
+
+//---minimap_bonus.c---///
+void		render_minimap(t_game *game);
 
 #endif

@@ -40,7 +40,6 @@ static int	parse_north_south(char *line, t_game *game, int fd)
 static int	parse_west_east(char *line, t_game *game, int fd)
 {
 	char	*path;
-
 	if (ft_strncmp(line, "WE", 2) == 0 && (line[2] == ' ' || line[2] == '\t'))
 	{
 		if (game->textures.west)

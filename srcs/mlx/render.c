@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: awaegaer <awaegaer@student.42.fr>          +#+  +:+       +#+        */
+/*   By: macaruan <macaruan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/10 15:54:48 by awaegaer          #+#    #+#             */
-/*   Updated: 2025/12/19 10:38:10 by awaegaer         ###   ########.fr       */
+/*   Updated: 2026/01/08 16:20:51 by macaruan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,7 @@ int	render_frame(void *game_ptr)
 	update_pos_n_dir(game);
 	render_floor_n_ceiling(game);
 	ray_casting(game);
+	render_minimap(game);
 	mlx_put_image_to_window(game->mlx, game->win, game->img->img_ptr, 0, 0);
 	return (0);
 }
