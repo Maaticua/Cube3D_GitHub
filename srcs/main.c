@@ -6,7 +6,7 @@
 /*   By: macaruan <macaruan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/28 15:07:25 by macaruan          #+#    #+#             */
-/*   Updated: 2026/01/08 16:27:59 by macaruan         ###   ########.fr       */
+/*   Updated: 2026/01/08 18:04:43 by macaruan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ static void	init_game(t_game *game)
 	game->mouse_last_x = 0;
 	game->mouse_enabled = 0;
 	if (!game->img)
-		exit (EXIT_FAILURE);
+		exit(EXIT_FAILURE);
 }
 
 int	main(int argc, char **argv)

@@ -6,7 +6,7 @@
 /*   By: macaruan <macaruan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/28 15:07:25 by macaruan          #+#    #+#             */
-/*   Updated: 2026/01/08 16:19:19 by macaruan         ###   ########.fr       */
+/*   Updated: 2026/01/08 18:04:36 by macaruan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,10 +91,10 @@ static void	render_minimap_tile(t_game *game, int x, int y)
 	draw_minimap_square(game, x, y, color);
 }
 
-void render_minimap(t_game *game)
+void	render_minimap(t_game *game)
 {
-	int x;
-	int y;
+	int	x;
+	int	y;
 
 	y = 0;
 	while (y < MINIMAP_SIZE)
