@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   player_movements.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: awaegaer <awaegaer@student.42.fr>          +#+  +:+       +#+        */
+/*   By: macaruan <macaruan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/19 10:37:14 by awaegaer          #+#    #+#             */
-/*   Updated: 2025/12/19 10:38:15 by awaegaer         ###   ########.fr       */
+/*   Updated: 2026/01/09 13:35:47 by macaruan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ void	update_pos_n_dir(t_game *game)
 {
 	if (game->moove_backward || game->moove_forward
 		|| game->moove_left || game->moove_right)
-		moove_forward_backward_left_or_right(game, 0.01);
+		moove_forward_backward_left_or_right(game, 0.05);
 	if (game->rotate_right)
 		rotate_left_or_right(game, 0.01);
 	else if (game->rotate_left)

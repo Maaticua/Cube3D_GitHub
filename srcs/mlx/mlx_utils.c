@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mlx_utils.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: awaegaer <awaegaer@student.42.fr>          +#+  +:+       +#+        */
+/*   By: macaruan <macaruan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/10 14:49:02 by awaegaer          #+#    #+#             */
-/*   Updated: 2025/12/23 16:49:07 by awaegaer         ###   ########.fr       */
+/*   Updated: 2026/01/09 13:33:47 by macaruan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,7 @@ void	mlx_inits(t_game *game)
 		free_game(game);
 		exit (EXIT_FAILURE);
 	}
-	game->win = mlx_new_window(game->mlx, 800, 600, "Larry's Labyrinth");
+	game->win = mlx_new_window(game->mlx, WINDOW_WIDTH, WINDOW_HEIGHT, "Larry's Labyrinth");
 	if (!game->win)
 	{
 		free_mlx(game);
