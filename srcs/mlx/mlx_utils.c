@@ -6,7 +6,7 @@
 /*   By: macaruan <macaruan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/10 14:49:02 by awaegaer          #+#    #+#             */
-/*   Updated: 2026/01/09 13:33:47 by macaruan         ###   ########.fr       */
+/*   Updated: 2026/01/12 12:27:09 by macaruan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,15 +16,17 @@ int	handle_close(void *game_ptr)
 {
 	t_game	*game;
 
-	game = (t_game *) game_ptr;
+	game = (t_game *)game_ptr;
 	free_mlx(game);
 	free_game(game);
-	exit (EXIT_SUCCESS);
+	exit(EXIT_SUCCESS);
 	return (0);
 }
 
 void	free_mlx(t_game *game)
 {
+	if (game->mlx)
+		free_sprites(game);
 	free_textures_imgs(game);
 	if (game->img->img_ptr)
 	{
@@ -57,8 +59,8 @@ void	img_init(t_img *img, t_game *game, char *filename)
 	}
 	img->width = width;
 	img->height = height;
-	img->addr = mlx_get_data_addr(img->img_ptr,
-			&img->bits_per_pixel, &img->line_length, &img->endian);
+	img->addr = mlx_get_data_addr(img->img_ptr, &img->bits_per_pixel,
+			&img->line_length, &img->endian);
 }
 
 void	mlx_inits(t_game *game)
@@ -67,19 +69,20 @@ void	mlx_inits(t_game *game)
 	if (!game->mlx)
 	{
 		free_game(game);
-		exit (EXIT_FAILURE);
+		exit(EXIT_FAILURE);
 	}
-	game->win = mlx_new_window(game->mlx, WINDOW_WIDTH, WINDOW_HEIGHT, "Larry's Labyrinth");
+	game->win = mlx_new_window(game->mlx, WINDOW_WIDTH, WINDOW_HEIGHT,
+			"Larry's Labyrinth");
 	if (!game->win)
 	{
 		free_mlx(game);
-		exit (EXIT_FAILURE);
+		exit(EXIT_FAILURE);
 	}
 	game->img->img_ptr = mlx_new_image(game->mlx, WINDOW_WIDTH, WINDOW_HEIGHT);
 	if (!game->img->img_ptr)
 	{
 		free_mlx(game);
-		exit (EXIT_FAILURE);
+		exit(EXIT_FAILURE);
 	}
 	game->img->bits_per_pixel = 32;
 	game->img->line_length = WINDOW_WIDTH * (game->img->bits_per_pixel / 8);

@@ -6,7 +6,7 @@
 /*   By: macaruan <macaruan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/12 13:08:04 by awaegaer          #+#    #+#             */
-/*   Updated: 2025/10/28 14:36:36 by macaruan         ###   ########.fr       */
+/*   Updated: 2026/01/09 15:57:18 by macaruan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,8 @@ int					ft_memcmp(const void *s1, const void *s2, size_t n);
 // Compares two memory areas
 int					ft_atoi(const char *nptr);
 // Converts a string to an integer
-
+int					ft_abs(int n);
+// Calcul de la valeur absolue d'un entier.
 size_t				ft_strlen(const char *s);
 // Returns the length of a string
 size_t				ft_strlcpy(char *dst, const char *src, size_t size);

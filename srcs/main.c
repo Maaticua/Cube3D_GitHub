@@ -6,7 +6,7 @@
 /*   By: macaruan <macaruan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/28 15:07:25 by macaruan          #+#    #+#             */
-/*   Updated: 2026/01/08 18:04:43 by macaruan         ###   ########.fr       */
+/*   Updated: 2026/01/09 16:36:37 by macaruan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,8 @@ int	main(int argc, char **argv)
 	mlx_inits(&game);
 	init_player_vectors(&game);
 	init_textures_imgs(&game);
+	load_sprite_frames(&game);
+	init_sprites(&game);
 	mlx_loop_hook(game.mlx, render_frame, &game);
 	mlx_hook(game.win, 2, KeyPressMask, handle_key, &game);
 	mlx_hook(game.win, 3, KeyReleaseMask, handle_key_release, &game);

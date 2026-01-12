@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   error.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: awaegaer <awaegaer@student.42.fr>          +#+  +:+       +#+        */
+/*   By: macaruan <macaruan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/24 16:45:55 by macaruan          #+#    #+#             */
-/*   Updated: 2025/12/22 14:49:35 by awaegaer         ###   ########.fr       */
+/*   Updated: 2026/01/12 12:28:23 by macaruan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,13 @@ void	exit_error(char *msg, t_game *game, char *line, int fd)
 	if (line)
 		free(line);
 	print_error(msg);
-	free_game(game);
+	if (game->mlx)
+	{
+		free_mlx(game);
+		free_game(game);
+	}
+	else
+		free_game(game);
 	exit(1);
 }
 

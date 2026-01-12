@@ -37,7 +37,10 @@ SRCS				=	$(SRC_DIR)main.c							\
 						$(SRC_DIR)parsing/validate_texture.c		\
 						$(SRC_DIR)utils/error.c						\
 						$(SRC_DIR)bonus/minimap_bonus.c				\
-						$(SRC_DIR)bonus/mouse_bonus.c				
+						$(SRC_DIR)bonus/mouse_bonus.c				\
+						$(SRC_DIR)bonus/sprite_draw_bonus.c			\
+						$(SRC_DIR)bonus/sprite_init_bonus.c			\
+						$(SRC_DIR)bonus/sprite_render_bonus.c		\
 
 # Apply the pattern substitution to each source file in SRC and produce a corresponding list of object files in the OBJ_DIR
 OBJ					= $(patsubst %.c,$(OBJ_DIR)/%.o, $(SRCS))

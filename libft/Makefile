@@ -48,6 +48,7 @@ LIBFT_DIR =	$(SRC_DIR)libft/ft_atoi.c \
 			$(SRC_DIR)libft/ft_substr.c \
 			$(SRC_DIR)libft/ft_tolower.c \
 			$(SRC_DIR)libft/ft_toupper.c \
+			$(SRC_DIR)libft/ft_abs.c	\
 
 PRINTF_DIR = $(SRC_DIR)ft_printf/ft_printf.c \
 			$(SRC_DIR)ft_printf/pf_strlen.c \
