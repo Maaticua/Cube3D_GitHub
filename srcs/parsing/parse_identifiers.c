@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_identifiers.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: awaegaer <awaegaer@student.42.fr>          +#+  +:+       +#+        */
+/*   By: macaruan <macaruan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/24 16:40:43 by macaruan          #+#    #+#             */
-/*   Updated: 2025/12/22 16:18:25 by awaegaer         ###   ########.fr       */
+/*   Updated: 2026/01/13 14:21:49 by macaruan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,7 @@ static int	parse_north_south(char *line, t_game *game, int fd)
 static int	parse_west_east(char *line, t_game *game, int fd)
 {
 	char	*path;
+
 	if (ft_strncmp(line, "WE", 2) == 0 && (line[2] == ' ' || line[2] == '\t'))
 	{
 		if (game->textures.west)
@@ -95,5 +96,5 @@ void	parse_element(char *line, t_game *game, int fd)
 	count += parse_west_east(line, game, fd);
 	count += parse_floor_ceiling(line, game, fd);
 	if (count == 0)
-		exit_error ("Error\nInvalid config line", game, line, fd);
+		exit_error("Error\nInvalid config line", game, line, fd);
 }

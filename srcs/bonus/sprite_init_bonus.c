@@ -6,7 +6,7 @@
 /*   By: macaruan <macaruan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/09 14:04:15 by macaruan          #+#    #+#             */
-/*   Updated: 2026/01/12 12:28:57 by macaruan         ###   ########.fr       */
+/*   Updated: 2026/01/13 14:22:03 by macaruan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,6 +69,7 @@ void	load_sprite_frames(t_game *game)
 void	free_sprites(t_game *game)
 {
 	int	i;
+
 	if (!game->mlx)
 		return ;
 	i = 0;

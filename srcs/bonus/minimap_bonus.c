@@ -6,14 +6,14 @@
 /*   By: macaruan <macaruan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/28 15:07:25 by macaruan          #+#    #+#             */
-/*   Updated: 2026/01/08 18:04:36 by macaruan         ###   ########.fr       */
+/*   Updated: 2026/01/13 13:55:45 by macaruan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/cub3d.h"
 
-#define MINIMAP_SIZE 10
-#define MINIMAP_SCALE 8
+#define MINIMAP_SIZE 20
+#define MINIMAP_SCALE 10
 #define MINIMAP_MARGIN 20
 
 static void	draw_minimap_square(t_game *game, int x, int y, int color)
