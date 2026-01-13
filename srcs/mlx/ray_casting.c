@@ -6,7 +6,7 @@
 /*   By: macaruan <macaruan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/14 15:54:09 by awaegaer          #+#    #+#             */
-/*   Updated: 2026/01/12 14:19:22 by macaruan         ###   ########.fr       */
+/*   Updated: 2026/01/13 16:49:47 by macaruan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,38 +57,10 @@ void	project_ray_until_wall(t_game *game, t_rc_ctx *rc_ctx)
 	}
 }
 
-// void	project_ray_until_wall(t_game *game, t_rc_ctx *rc_ctx)
-// {
-// 	digital_differential_analysis_ops(&game->player, rc_ctx);
-// 	while (1)
-// 	{
-// 		if (rc_ctx->map_y < 0 || rc_ctx->map_y >= game->map.height
-// 			|| rc_ctx->map_x < 0 || rc_ctx->map_x >= game->map.width)
-// 			break ;
-// 		if (game->map.grid[rc_ctx->map_y][rc_ctx->map_x] == '1')
-// 			break ;
-// 		if (rc_ctx->side_dist_x < rc_ctx->side_dist_y)
-// 		{
-// 			rc_ctx->map_x += rc_ctx->step_x;
-// 			rc_ctx->side_dist_x += rc_ctx->delta_dist_x;
-// 			rc_ctx->side = 0;
-// 		}
-// 		else
-// 		{
-// 			rc_ctx->map_y += rc_ctx->step_y;
-// 			rc_ctx->side_dist_y += rc_ctx->delta_dist_y;
-// 			rc_ctx->side = 1;
-// 		}
-// 		//digital_differential_analysis_ops(&game->player, rc_ctx);
-// 	}
-// }
-
 void	ray_casting(t_game *game)
 {
 	t_rc_ctx	rc_ctx;
-	int			wall_color;
 
-	wall_color = create_color(127, 0, 255);
 	ft_memset(&rc_ctx, 0, sizeof(t_rc_ctx));
 	rc_ctx.x = 0;
 	while (rc_ctx.x < WINDOW_WIDTH)
@@ -101,6 +73,13 @@ void	ray_casting(t_game *game)
 		rc_ctx.map_x = (int)game->player.pos_x;
 		rc_ctx.map_y = (int)game->player.pos_y;
 		project_ray_until_wall(game, &rc_ctx);
+		if (rc_ctx.side == 0)
+			rc_ctx.perp_wall_dist = (rc_ctx.map_x - game->player.pos_x + (1
+						- rc_ctx.step_x) / 2) / rc_ctx.ray_dir_x;
+		else
+			rc_ctx.perp_wall_dist = (rc_ctx.map_y - game->player.pos_y + (1
+						- rc_ctx.step_y) / 2) / rc_ctx.ray_dir_y;
+		game->zbuffer[(int)rc_ctx.x] = rc_ctx.perp_wall_dist;
 		draw_wall_texture(game, &rc_ctx);
 		rc_ctx.x++;
 	}

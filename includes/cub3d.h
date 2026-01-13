@@ -6,7 +6,7 @@
 /*   By: macaruan <macaruan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/28 15:08:33 by macaruan          #+#    #+#             */
-/*   Updated: 2026/01/09 16:39:38 by macaruan         ###   ########.fr       */
+/*   Updated: 2026/01/13 15:37:12 by macaruan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -138,6 +138,7 @@ typedef struct s_game
 	int				mouse_x;
 	int				mouse_last_x;
 	int				mouse_enabled;
+	double			zbuffer[WINDOW_WIDTH];
 	t_textures		textures;
 	t_color			floor;
 	t_color			ceiling;

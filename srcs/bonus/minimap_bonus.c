@@ -6,7 +6,7 @@
 /*   By: macaruan <macaruan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/28 15:07:25 by macaruan          #+#    #+#             */
-/*   Updated: 2026/01/13 13:55:45 by macaruan         ###   ########.fr       */
+/*   Updated: 2026/01/13 16:42:01 by macaruan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,15 +66,21 @@ static void	draw_player_on_minimap(t_game *game, int center_x, int center_y)
 
 static int	get_minimap_color(t_game *game, int map_x, int map_y)
 {
+	int	line_len;
+
 	if (map_x >= 0 && map_x < game->map.width && map_y >= 0
 		&& map_y < game->map.height)
 	{
-		if (game->map.grid[map_y][map_x] == '1')
-			return (0xFFFFFF);
-		else if (game->map.grid[map_y][map_x] == '0')
-			return (0x333333);
-		else
-			return (0x333333);
+		line_len = ft_strlen(game->map.grid[map_y]);
+		if (map_x < line_len)
+		{
+			if (game->map.grid[map_y][map_x] == '1')
+				return (0xFFFFFF);
+			else if (game->map.grid[map_y][map_x] == '0')
+				return (0x333333);
+			else
+				return (0x333333);
+		}
 	}
 	return (0x000000);
 }

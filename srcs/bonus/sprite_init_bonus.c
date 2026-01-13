@@ -6,7 +6,7 @@
 /*   By: macaruan <macaruan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/09 14:04:15 by macaruan          #+#    #+#             */
-/*   Updated: 2026/01/13 14:22:03 by macaruan         ###   ########.fr       */
+/*   Updated: 2026/01/13 16:35:03 by macaruan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,13 +17,15 @@ void	init_sprites(t_game *game)
 	int	x;
 	int	y;
 	int	count;
+	int	line_len;
 
 	count = 0;
-	y = 0;
-	while (y < game->map.height && count < MAX_SPRITES)
+	y = -1;
+	while (++y < game->map.height && count < MAX_SPRITES)
 	{
 		x = 0;
-		while (x < game->map.width && count < MAX_SPRITES)
+		line_len = ft_strlen(game->map.grid[y]);
+		while (x < line_len && count < MAX_SPRITES)
 		{
 			if (game->map.grid[y][x] == 'X')
 			{
@@ -34,7 +36,6 @@ void	init_sprites(t_game *game)
 			}
 			x++;
 		}
-		y++;
 	}
 	game->sprite_data.count = count;
 	game->sprite_data.frame_counter = 0;

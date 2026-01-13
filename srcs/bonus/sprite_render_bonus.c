@@ -6,7 +6,7 @@
 /*   By: macaruan <macaruan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/09 14:24:29 by macaruan          #+#    #+#             */
-/*   Updated: 2026/01/13 14:23:38 by macaruan         ###   ########.fr       */
+/*   Updated: 2026/01/13 14:47:17 by macaruan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,7 @@ void	sort_sprites(t_game *game)
 	int			i;
 	int			j;
 	t_sprite	tmp;
+	double		tmp2;
 
 	i = 0;
 	while (i < game->sprite_data.count - 1)
@@ -58,8 +59,8 @@ void	sort_sprites(t_game *game)
 		j = 0;
 		while (j < game->sprite_data.count - i - 1)
 		{
-			if (game->sprite_data.sprites[j].distance < game->sprite_data.sprites[j
-				+ 1].distance)
+			tmp2 = game->sprite_data.sprites[j].distance;
+			if (tmp2 < game->sprite_data.sprites[j + 1].distance)
 			{
 				tmp = game->sprite_data.sprites[j];
 				game->sprite_data.sprites[j] = game->sprite_data.sprites[j + 1];

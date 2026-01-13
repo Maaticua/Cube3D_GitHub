@@ -6,7 +6,7 @@
 /*   By: macaruan <macaruan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/19 10:37:14 by awaegaer          #+#    #+#             */
-/*   Updated: 2026/01/13 12:30:29 by macaruan         ###   ########.fr       */
+/*   Updated: 2026/01/13 14:41:07 by macaruan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,34 +29,29 @@ void	rotate_left_or_right(t_game *game, double angle)
 		* cos(angle);
 }
 
-// void	moove_forward_backward_left_or_right(t_game *game, double ms)
-// {
-// 	double	temp_pos_x;
-// 	double	temp_pos_y;
-
-// 	temp_pos_x = 0;
-// 	temp_pos_y = 0;
-// 	if (game->moove_forward)
-// 		temp_pos_x = game->player.pos_x + game->player.dir_x * ms;
-// 	else if (game->moove_backward)
-// 		temp_pos_x = game->player.pos_x - game->player.dir_x * ms;
-// 	else if (game->moove_right)
-// 		temp_pos_x = game->player.pos_x - game->player.dir_y * ms;
-// 	else if (game->moove_left)
-// 		temp_pos_x = game->player.pos_x + game->player.dir_y * ms;
-// 	if (game->moove_forward)
-// 		temp_pos_y = game->player.pos_y + game->player.dir_y * ms;
-// 	else if (game->moove_backward)
-// 		temp_pos_y = game->player.pos_y - game->player.dir_y * ms;
-// 	else if (game->moove_right)
-// 		temp_pos_y = game->player.pos_y + game->player.dir_x * ms;
-// 	else if (game->moove_left)
-// 		temp_pos_y = game->player.pos_y - game->player.dir_x * ms;
-// 	if (game->map.grid[(int)temp_pos_y][(int)game->player.pos_x] != '1')
-// 		game->player.pos_y = temp_pos_y;
-// 	if (game->map.grid[(int)game->player.pos_y][(int)temp_pos_x] != '1')
-// 		game->player.pos_x = temp_pos_x;
-// }
+static void	calculate_new_pos(t_game *game, double ms, double *x, double *y)
+{
+	if (game->moove_forward)
+	{
+		*x += game->player.dir_x * ms;
+		*y += game->player.dir_y * ms;
+	}
+	if (game->moove_backward)
+	{
+		*x -= game->player.dir_x * ms;
+		*y -= game->player.dir_y * ms;
+	}
+	if (game->moove_right)
+	{
+		*x -= game->player.dir_y * ms;
+		*y += game->player.dir_x * ms;
+	}
+	if (game->moove_left)
+	{
+		*x += game->player.dir_y * ms;
+		*y -= game->player.dir_x * ms;
+	}
+}
 
 void	moove_forward_backward_left_or_right(t_game *game, double ms)
 {
@@ -65,26 +60,7 @@ void	moove_forward_backward_left_or_right(t_game *game, double ms)
 
 	temp_pos_x = game->player.pos_x;
 	temp_pos_y = game->player.pos_y;
-	if (game->moove_forward)
-	{
-		temp_pos_x += game->player.dir_x * ms;
-		temp_pos_y += game->player.dir_y * ms;
-	}
-	if (game->moove_backward)
-	{
-		temp_pos_x -= game->player.dir_x * ms;
-		temp_pos_y -= game->player.dir_y * ms;
-	}
-	if (game->moove_right)
-	{
-		temp_pos_x -= game->player.dir_y * ms;
-		temp_pos_y += game->player.dir_x * ms;
-	}
-	if (game->moove_left)
-	{
-		temp_pos_x += game->player.dir_y * ms;
-		temp_pos_y -= game->player.dir_x * ms;
-	}
+	calculate_new_pos(game, ms, &temp_pos_x, &temp_pos_y);
 	if (game->map.grid[(int)temp_pos_y][(int)game->player.pos_x] != '1')
 		game->player.pos_y = temp_pos_y;
 	if (game->map.grid[(int)game->player.pos_y][(int)temp_pos_x] != '1')
