@@ -6,13 +6,13 @@
 /*   By: macaruan <macaruan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/09 15:55:46 by macaruan          #+#    #+#             */
-/*   Updated: 2026/01/09 15:56:23 by macaruan         ###   ########.fr       */
+/*   Updated: 2026/01/13 16:54:08 by macaruan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int ft_abs(int n)
+int	ft_abs(int n)
 {
 	if (n < 0)
 		return (-n);
