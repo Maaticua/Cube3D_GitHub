@@ -6,7 +6,7 @@
 /*   By: macaruan <macaruan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/14 14:45:29 by awaegaer          #+#    #+#             */
-/*   Updated: 2026/01/14 11:19:40 by macaruan         ###   ########.fr       */
+/*   Updated: 2026/01/14 13:44:56 by macaruan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,17 +15,17 @@
 int	init_player_vectors(t_game *game)
 {
 	if (game->player.orientation == 'N')
-		return (game->player.dir_x = 0, game->player.dir_y = -1,
-			game->player.cam_x = 0.66, game->player.cam_y = 0, 42);
+		return (game->player.dir_x = 0.001, game->player.dir_y = -0.999,
+			game->player.cam_x = 0.66001, game->player.cam_y = 0.001, 42);
 	else if (game->player.orientation == 'S')
-		return (game->player.dir_x = 0, game->player.dir_y = 1,
-			game->player.cam_x = -0.66, game->player.cam_y = 0, 42);
+		return (game->player.dir_x = -0.001, game->player.dir_y = 0.999,
+			game->player.cam_x = -0.66001, game->player.cam_y = 0.001, 42);
 	else if (game->player.orientation == 'E')
-		return (game->player.dir_x = 1, game->player.dir_y = 0,
-			game->player.cam_x = 0, game->player.cam_y = 0.66, 42);
+		return (game->player.dir_x = 0.999, game->player.dir_y = 0.001,
+			game->player.cam_x = 0.001, game->player.cam_y = 0.66001, 42);
 	if (game->player.orientation == 'W')
-		return (game->player.dir_x = -1, game->player.dir_y = 0,
-			game->player.cam_x = 0, game->player.cam_y = -0.66, 42);
+		return (game->player.dir_x = -0.999, game->player.dir_y = -0.001,
+			game->player.cam_x = -0.001, game->player.cam_y = -0.66001, 42);
 	return (42);
 }
 
