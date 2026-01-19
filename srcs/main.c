@@ -6,7 +6,7 @@
 /*   By: macaruan <macaruan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/28 15:07:25 by macaruan          #+#    #+#             */
-/*   Updated: 2026/01/09 16:36:37 by macaruan         ###   ########.fr       */
+/*   Updated: 2026/01/19 12:34:06 by macaruan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,5 +55,5 @@ int	main(int argc, char **argv)
 	mlx_hook(game.win, 17, 0, handle_close, &game);
 	mlx_hook(game.win, 6, PointerMotionMask, handle_mouse_move, &game);
 	mlx_loop(game.mlx);
-	return (0);
+	return (0) ;
 }
