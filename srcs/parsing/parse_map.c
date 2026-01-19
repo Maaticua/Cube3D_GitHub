@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_map.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: awaegaer <awaegaer@student.42.fr>          +#+  +:+       +#+        */
+/*   By: macaruan <macaruan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/29 13:12:33 by macaruan          #+#    #+#             */
-/*   Updated: 2025/12/23 17:36:44 by awaegaer         ###   ########.fr       */
+/*   Updated: 2026/01/19 12:01:37 by macaruan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,8 @@ static int	collect_lines(int fd, char **temp, char *first_line, t_game *game)
 			exit_error("Error\nContent after map", game, line, fd);
 		temp[i++] = line;
 		line = get_next_line(fd);
-		taille_map += ft_strlen(line);
+		if (line)
+			taille_map += ft_strlen(line);
 		if (taille_map > 10000 && free_temp(temp, i))
 			exit_error("Error\nMap too big", game, line, fd);
 	}
